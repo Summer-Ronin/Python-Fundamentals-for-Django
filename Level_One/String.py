@@ -1,7 +1,8 @@
 """
-===================================================
+============================================================
 ############## String manipulation #########################
-===================================================
+# Python version: 3.9.7
+============================================================
 """
 
 # Strings are used in Python to record text information, such as name. Strings
@@ -22,10 +23,17 @@
 #     4.) String Properties
 #     5.) String Methods
 #     6.) Print Formatting
+#     7.) Some other String manipulation methods
 
 # Creating a String
 # To create a string in Python you need to use either
 # single quotes or double quotes. For example:
+
+# Import rich for terminal decoration which is just for fun, but rich is more than that
+from rich.console import Console
+from rich.table import Table
+
+console = Console()
 
 # Single word
 'hello'
@@ -38,7 +46,7 @@
 
 
 # Be careful with quotes!
-#' I'm using single quotes, but will create an error'
+# ' I'm using single quotes, but will create an error'
 
 
 # The reason for the error above is because the single quote in I'm stopped the
@@ -90,8 +98,10 @@ len('Hello World')
 # Assign s as a string
 s = 'Hello World'
 
-# Print the object
-print(s)
+table = Table()
+table.add_column('String indexing and slicing', justify="justify", style="bright_yellow", no_wrap=True)
+table.add_row(s)
+console.print(table)
 
 # Let's start indexing!
 
@@ -113,25 +123,28 @@ print('Third char of Hello World is ', s[2])
 # It's like you are telling the slicing function where to go, 1 means it should go from 1 to len-1
 print('Slice everything from index 1 to end: ', s[1:])
 
+print('Slice everything from index 3 to end: ', s[3:])
 
 # Note that there is no change to the original s
-print(s)
+print('After slicing, there is no change to the original string: ', s)
 
 # Grab everything UP TO the 3rd index
-print('First 3 chars of Hello World are: ', s[3:])
+# And you can write it as s[0:3] which is just the same with s[:3]
+print('First 3 chars of Hello World are: ', s[:3])
 
 
 # Note the above slicing. Here we're telling Python to grab everything from
 # 0 up to 3. It doesn't include the 3rd index. You'll notice this a lot in
 # Python, where statements and are usually in the context of "up to, but not including".
 
-#Everything
+# Everything
 s[:]
 
 
 # We can also use negative indexing to go backwards.
 # Last letter (one index behind 0 so it loops back around)
-s[-1]
+# s[-1:] is actually this s[-1]
+print('Last char of the string is: ', s[-1])
 
 # Grab everything but the last letter
 print('Grab everything but the last char is gone: ', s[:-1])
@@ -141,22 +154,24 @@ print('Grab everything but the last char is gone: ', s[:-1])
 # specified step size (the default is 1). For instance we can use two colons in
 # a row and then a number specifying the frequency to grab elements. For example:
 
+# As you many know that, string is like an array in Python, char will be indexed just like array
 # Grab everything, but go in steps size of 1
-s[::1]
+print('\n')
+print('Print string forwards with step of 1', s[::1])
+# String will be printed with step of 2 so indexes should go 0 2 4 ... 
+print('Print string forwards with step of 2', s[::2])
 
-# Grab everything, but go in step sizes of 2
-s[::2]
+# Print the string forwards but the first char
+print('The first char is gone', s[1::1])
 
-# We can use this to print a string backwards
-s[::-1]
+# We can use this to print a string backwards with step of 1
+print('Reverse string: ', s[::-1])
 
-
+print('\n')
 # ## String Properties
 # Its important to note that strings have an important property known as
 # immutability. This means that once a string is created, the elements within
 # it can not be changed or replaced. For example:
-
-s
 
 # Let's try to change the first letter to 'x'
 # s[0] = 'x'
@@ -238,7 +253,49 @@ print('One: {p}, Two: {p}, Three: {p}'.format(p='Hi!'))
 
 
 # Several Objects:
-print('Object 1: {a}, Object 2: {b}, Object 3: {c}'.format(a=1,b='two',c=12.3))
+print('Object 1: {a}, Object 2: {b}, Object 3: {c}'.format(
+    a=1, b='two', c=12.3))
 
 
 # That is the basics of string formatting!
+
+##########################
+### Some other methods ###
+##########################
+print('\n')
+
+s = 'Hello World'
+# Startswith / Endswith
+# This will return Boolean type correspond with statement
+print(s.startswith("H"), ' because Hello World starts with H')
+print(s.endswith("H"), ' because Hello World does not end with H')
+
+#Replacing
+# I use print here to avoid our s from being replace with something else
+print(s.replace("Hello", "Goodbye"))
+
+#Strip
+# This method will help you remove any character from both ends of the string
+# There are 3 types: 
+# strip(<parameter>) to remove a form of string from both ends
+# lstrip(<parameter>) to remove a form of string from left side and forwards
+# rstrip(<parameter>) to remove a form of string from right side and backwards
+
+# override s 
+s = ',,,,,rrttgg.....banana....rrr'
+
+print('Stripping the input format from both sides of the string: ', s.strip('.,grt'))
+print('Stripping the input format from left side of the string: ', s.lstrip('.,grt'))
+print('Stripping the input format from right side of the string: ', s.rstrip('.,grt'))
+
+# Some String Testing
+s = 'Hello World'
+print(
+    s.isalnum(), #check if all char are alphanumeric 
+    s.isalpha(), #check if all char in the string are alphabetic
+    s.isdigit(), #test if string contains digits
+    s.istitle(), #test if string contains title words
+    s.isupper(), #test if string contains upper case
+    s.islower(), #test if string contains lower case
+    s.isspace() #test if string contains spaces
+)
