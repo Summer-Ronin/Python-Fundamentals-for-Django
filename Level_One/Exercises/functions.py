@@ -53,9 +53,27 @@ print(arrayCheck_somewhere([1, 1, 2, 3, 1]))
 # stringBits('Hi') → 'H'
 # stringBits('Heeololeo') → 'Hello'
 
-# def stringBits(str):
+def stringBits(str):
   # CODE GOES HERE
+  return str[::2]
 
+print(stringBits('Heeololeo'))
+
+# Another way with lambda
+stringBits = lambda str: str[::2] 
+print(stringBits('Heeololeo'))
+
+# Another approach using the simplest, brute force solution
+def stringBits(str):
+	result = ""
+	# Many ways to do this.
+
+	# This uses the standard loop of i on every char,
+	# and inside the loop skips the odd index values.
+	for i in range(len(str)):
+		if i % 2 == 0:
+			result = result + str[i]
+	return result
 
 #####################
 ## -- PROBLEM 3 -- ##
