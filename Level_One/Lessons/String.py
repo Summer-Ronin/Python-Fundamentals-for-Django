@@ -143,8 +143,15 @@ s[:]
 
 # We can also use negative indexing to go backwards.
 # Last letter (one index behind 0 so it loops back around)
-# s[-1:] is actually this s[-1]
-print('Last char of the string is: ', s[-1])
+
+print('Last char of the string is: ', s[-1:])
+
+"""
+    WARNING HERE: Nerver let the s[-1:] trick you, it will never be s[-1], since they are equal 
+    Let's try s[-2] and s[-2:]
+"""
+
+print(s[-len(s)], s[-2:])
 
 # Grab everything but the last letter
 print('Grab everything but the last char is gone: ', s[:-1])

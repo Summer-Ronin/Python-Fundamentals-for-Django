@@ -92,8 +92,20 @@ def stringBits(str):
 # end_other('abc', 'abXabc') → True
 
 
-# def end_other(a, b):
-  # CODE GOES HERE
+def end_other(a, b):
+    """
+        Return True if b ends with 
+        Input: string a and b
+        Output: Boolean value
+    """
+    # CODE GOES HERE
+
+    if(b[-len(a)].lower() == a.lower()):
+        return True
+    else: 
+        return False
+
+print(end_other('abc', 'abXabc'))
 
 #####################
 ## -- PROBLEM 4 -- ##
@@ -106,8 +118,14 @@ def stringBits(str):
 # doubleChar('AAbb') → 'AAAAbbbb'
 # doubleChar('Hi-There') → 'HHii--TThheerree'
 
-# def doubleChar(str):
-  # CODE GOES HERE
+def doubleChar(str):
+    # CODE GOES HERE
+    new_str = ''
+    for i in str:
+        new_str = new_str + i*2
+    return new_str
+      
+print(doubleChar('The'))
 
 
 #####################
@@ -131,10 +149,18 @@ def stringBits(str):
 # no_teen_sum(2, 13, 1) → 3
 # no_teen_sum(2, 1, 14) → 3
 
-# def no_teen_sum(a, b, c):
-  # CODE GOES HERE
-# def fix_teen(n):
-  # CODE GOES HERE
+
+def no_teen_sum(a, b, c):
+    # CODE GOES HERE
+    return fix_teen(a) + fix_teen(b) + fix_teen(c)
+        
+def fix_teen(n):
+    # CODE GOES HERE
+    if(n >= 13 and n <= 19):
+        n = 0
+    return n
+
+print(no_teen_sum(2, 13, 1))
 
 #####################
 ## -- PROBLEM 6 -- ##
@@ -148,5 +174,14 @@ def stringBits(str):
 # count_evens([2, 2, 0]) → 3
 # count_evens([1, 3, 5]) → 0
 
-# def count_evens(nums):
-  # CODE GOES HERE
+def count_evens(nums):
+    #CODE GOES HERE
+    count = 0
+
+    for i in nums:
+        if i % 2 == 0:
+            count = count + 1
+    
+    return count
+
+print(count_evens([2, 1, 2, 3, 4]))
