@@ -39,14 +39,19 @@ len(my_list)
 # remind ourselves of how this works:
 my_list = ['one','two','three',4,5]
 
+print('Our main list: ', my_list)
+
 # Grab element at index 0
 my_list[0]
 
 # Grab index 1 and everything past it
-print(my_list[1:])
+# Since list in Python reacts quite similarly to list in JS 
+# And things are same same with that string one so you know the string, you know the list
+# I recommend, take a look back at the strings before getting any further
+print('Slice from index number 1 to the end: ', my_list[1:])
 
 # Grab everything UP TO index 3
-my_list[:3]
+print('Slice first 3 elements from the list: ', my_list[:3])
 
 # We can also use + to concatenate lists, just like we did for strings.
 
@@ -95,9 +100,20 @@ l = [1,2,3]
 l.append('append me!')
 
 # Show
-l
+# print(l)
 
+# how about appending another list?
+l1 = [4, 5, 6]
 
+l.append(l1)
+
+# print(l)
+
+# then you see a list inside a list for real like [..., []] which does not looks pretty
+
+l.extend(l1)
+
+print(l)
 # Use "pop" to "pop off" an item from the list. By default pop takes off the last
 # index, but you can also specify which index to pop off. Let's see an example:
 
@@ -159,7 +175,9 @@ lst_3=[7,8,9]
 matrix = [lst_1,lst_2,lst_3]
 
 # Show
-matrix
+print('Our matrix is: ', matrix)
+
+# So matrix in Python is a nested list
 
 
 # Now we can again use indexing to grab elements, but now there are two levels
@@ -186,7 +204,7 @@ matrix[0][0]
 # Build a list comprehension by deconstructing a for loop within a []
 first_col = [row[0] for row in matrix]
 
-first_col
+print(first_col)
 
 
 # We used list comprehension here to grab the first element of every row in the
