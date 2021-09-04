@@ -291,7 +291,7 @@ class Book():
 book = Book("Python Rocks!", "Jose Portilla", 159)
 
 #Special Methods
-print (book)
+print(str(book))
 print (len(book))
 del book
 
