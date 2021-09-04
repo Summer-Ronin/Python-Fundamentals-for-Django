@@ -27,17 +27,69 @@ from rich.console import Console
 
 console = Console()
 
-digits = list(range(1, 10))
 
-# Shuffle the digits
-random.shuffle(digits)
+def computer_gen():
+    """
+        Computer thinks of 3 digit number
+    """
+    digits = list(range(1, 10))
 
-# Get first 3 digits from the list
-computer_number = digits[:3]
+    # Shuffle the digits
+    random.shuffle(digits)
 
+    # Get first 3 digits from the list
+    # return int(''.join([str(i) for i in digits[:3]]))
+    return digits[:3]
+
+def make_usr_list(user_input):
+    """
+        Convert user input string into a list
+        Input: a 3 digit number
+        Output: a list
+    """
+    return_list = []
+    while user_input != 0:
+        return_list.append(user_input % 10)
+        user_input = user_input // 10
+    
+    # We have to reverse the list since we append from 
+    return return_list[::-1]
+
+def check_guess(comp_numb, user_guess):
+    """
+        Compare user guess with computer gen number
+        Input: computer gen number, user guess number
+        Output: a statement
+    """
+    if comp_numb == user_guess: 
+        return 'BREAK'
+    
 # User input
 console.print("It's a three digit number, what is your guess?", style="cyan2")
-user_guess = input()
+
+# It stands out there because if you put it in while loop, computer will change the number every single
+# time the loop loops back
+computer_number = computer_gen()
+
+# Comment this line so the game can be fully achieved
+print(computer_number)
+
+flag = True
+while flag == True:
+    user_guess = input()
+
+    user_guess_list = make_usr_list(int(user_guess))
+
+    if((user_guess_list == computer_number) == True):
+        console.print('HOORAY, MATCH...', style="cyan")
+        flag = False
+
+    elif(user_guess_list[0] in computer_number or user_guess_list[1] in computer_number or user_guess_list[2] in computer_number):
+        console.print('Closed! but not enough, guess again', style="red")
+        console.print(user_guess_list == computer_number)
+
+    else: 
+        console.print('Nope! nothing matches, guess again', style="red")
 
 
 # Think about how you will compare the input to the random number, what format
