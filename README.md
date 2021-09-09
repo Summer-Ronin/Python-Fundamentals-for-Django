@@ -32,7 +32,9 @@ python -m venv env
 - You can replace the `env` as any name that you feel pleased with
 
 ## Usage
-
+- To use this repo perfectly, you need to follow along and don't skip steps unless you already know what you're doing 😀, trust me, it will do it. 
+- As you can see, this Dojo is for learning and improving so things in here, we will try to keep them clean and neat so you will not feel boring and distracted to follow along. 
+- Yes, this repo is a collection of prerequisites that you can take before diving into Django. As I said, you SHOULD TAKE THIS FIRST, believe it or not, people with strong core tend to build stronger and taller, same same with learning to use a new framework, good understanding of the basics will save you time and help build better mindset too
 
 ## About the author
 
