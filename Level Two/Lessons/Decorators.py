@@ -10,6 +10,9 @@
 # To properly explain decorators we will slowly build up from functions.
 # So lets break down the steps:
 #
+
+from rich.console import Console
+console = Console()
 ###################
 # Functions Review
 ###################
@@ -17,7 +20,9 @@
 def func():
     return 1
 
-func()
+# If you call it func(), it will not return such thing.
+# You must print it out
+console.print(func(), style="red")
 
 ###################
 # Scope Review
@@ -27,10 +32,17 @@ func()
 # a label is referring to.
 # For example:
 
+# Here is a global
 s = 'Global Variable'
 
-def func():
-    print(locals())
+def local_func():
+    # Here is a local
+    local = "here comes local"
+    return locals()
+
+# What if there is no local at all, it will return 0 cuz you 
+# print it out in the def, see...
+print('Scope calling function:', local_func())
 
 
 # Remember that Python functions create a new scope, meaning the function has
@@ -39,7 +51,7 @@ def func():
 # and globals() functions.
 
 # For example:
-print(globals())
+# print(globals())
 
 
 # Here we get back a dictionary of all the global variables, many of them are
@@ -49,8 +61,8 @@ print(globals().keys())
 
 
 # Note how "s" is there, the Global Variable we defined as a string:
-
-globals()['s']
+# And that s is what we have already defined up there
+print(globals()['s'])
 
 
 # Now lets run our function to check for any local variables in the func()
@@ -84,7 +96,7 @@ greet()
 
 del hello
 
-hello()
+# hello()
 
 greet()
 
@@ -110,7 +122,7 @@ def hello(name='Jose'):
 
 hello()
 # Uh oh!
-welcome()
+# welcome()
 
 
 # Note how due to scope, the welcome() function is not defined outside of the
